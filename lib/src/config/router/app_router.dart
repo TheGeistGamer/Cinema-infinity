@@ -1,0 +1,18 @@
+import 'package:infinity_cinema/src/screens/index.dart';
+import 'package:go_router/go_router.dart';
+
+final appRouter = GoRouter(initialLocation: '/', routes: [
+  GoRoute(
+      path: '/',
+      name: HomeScreen.name,
+      builder: (context, state) => const HomeScreen(),
+      routes: [
+        GoRoute(
+            path: 'movie/:id',
+            name: MovieScreen.name,
+            builder: (context, state) {
+              final movieId = state.pathParameters['id'];
+              return MovieScreen(movieId: movieId ?? 'no_id');
+            }),
+      ]),
+]);
